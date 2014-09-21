@@ -3,21 +3,27 @@
 (function() {
     'use strict';
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    var scene, camera, renderer;
+    var cube;
 
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
 
-    var geometry = new THREE.BoxGeometry(1,1,1);
-    var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-    var cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-    camera.position.z = 5;
+        cube = new THREE.Mesh(
+            new THREE.BoxGeometry(1,1,1),
+            new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        );
+        scene.add(cube);
 
-    var render = function () {
+        camera.position.z = 5;
+    }
+
+    function render() {
         requestAnimationFrame(render);
 
         cube.rotation.x += 0.1;
@@ -26,5 +32,6 @@
         renderer.render(scene, camera);
     };
 
+    init();
     render();
 })();
