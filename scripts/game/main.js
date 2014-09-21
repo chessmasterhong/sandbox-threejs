@@ -3,6 +3,7 @@
 (function() {
     'use strict';
 
+    var container;
     var scene, camera, renderer;
     var cube;
 
@@ -13,10 +14,6 @@
         camera.position.y = 150
         camera.position.z = 350;
 
-        renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
         cube = new THREE.Mesh(
             new THREE.BoxGeometry(200, 200, 200),
             new THREE.MeshNormalMaterial()
@@ -24,6 +21,13 @@
         cube.position.y = 150;
 
         scene.add(cube);
+
+        container = document.createElement('div');
+        document.body.appendChild(container);
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
     }
 
     function render() {
