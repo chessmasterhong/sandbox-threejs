@@ -8,19 +8,22 @@
 
     function init() {
         scene = new THREE.Scene();
+
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.y = 150
+        camera.position.z = 350;
 
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
         cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1,1,1),
-            new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+            new THREE.BoxGeometry(200, 200, 200),
+            new THREE.MeshNormalMaterial()
         );
-        scene.add(cube);
+        cube.position.y = 150;
 
-        camera.position.z = 5;
+        scene.add(cube);
     }
 
     function render() {
