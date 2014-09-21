@@ -5,6 +5,7 @@
 
     var container;
     var scene, camera, renderer, stats;
+    var keyboard;
     var cube;
 
     function init() {
@@ -35,6 +36,17 @@
         stats.domElement.style.top = '0px';
         stats.domElement.style.left = '0px';
         container.appendChild(stats.domElement);
+
+        keyboard = new THREEx.KeyboardState(renderer.domElement);
+        renderer.domElement.setAttribute('tabIndex', '0');
+        renderer.domElement.focus();
+
+        keyboard.domElement.addEventListener('keydown', function(){
+            if(keyboard.pressed('w')) { cube.rotation.x -= 0.1; }
+            if(keyboard.pressed('s')) { cube.rotation.x += 0.1; }
+            if(keyboard.pressed('a')) { cube.rotation.y -= 0.1; }
+            if(keyboard.pressed('d')) { cube.rotation.y += 0.1; }
+        });
     }
 
     function animate() {
@@ -46,9 +58,6 @@
     }
 
     function render() {
-        cube.rotation.x += 0.1;
-        cube.rotation.y += 0.1;
-
         renderer.render(scene, camera);
     };
 
