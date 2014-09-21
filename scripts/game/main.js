@@ -4,7 +4,7 @@
     'use strict';
 
     var container;
-    var scene, camera, renderer;
+    var scene, camera, renderer, stats;
     var cube;
 
     function init() {
@@ -28,11 +28,24 @@
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
+
+        stats = new Stats();
+        stats.setMode(0);
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.top = '0px';
+        stats.domElement.style.left = '0px';
+        container.appendChild(stats.domElement);
+    }
+
+    function animate() {
+        render();
+
+        requestAnimationFrame(animate);
+
+        stats.update();
     }
 
     function render() {
-        requestAnimationFrame(render);
-
         cube.rotation.x += 0.1;
         cube.rotation.y += 0.1;
 
@@ -40,5 +53,5 @@
     };
 
     init();
-    render();
+    animate();
 })();
