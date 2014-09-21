@@ -1,4 +1,4 @@
-/* global THREE */
+/* global THREE, THREEx */
 
 (function() {
     'use strict';
@@ -37,6 +37,8 @@
         stats.domElement.style.left = '0px';
         container.appendChild(stats.domElement);
 
+        THREEx.WindowResize(renderer, camera);
+
         keyboard = new THREEx.KeyboardState(renderer.domElement);
         renderer.domElement.setAttribute('tabIndex', '0');
         renderer.domElement.focus();
@@ -59,7 +61,7 @@
 
     function render() {
         renderer.render(scene, camera);
-    };
+    }
 
     init();
     animate();
