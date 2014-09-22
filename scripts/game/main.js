@@ -23,7 +23,8 @@
 
         scene.add(cube);
 
-        container = document.getElementById('canvas');
+        container = document.createElement('div');
+        document.body.appendChild(container);
 
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -31,9 +32,6 @@
 
         stats = new Stats();
         stats.setMode(0);
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.top = '0px';
-        stats.domElement.style.left = '0px';
         container.appendChild(stats.domElement);
 
         THREEx.WindowResize(renderer, camera);
