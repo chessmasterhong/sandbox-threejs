@@ -12,7 +12,7 @@
         scene = new THREE.Scene();
 
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-        camera.position.y = 150
+        camera.position.y = 150;
         camera.position.z = 350;
 
         cube = new THREE.Mesh(
@@ -54,7 +54,7 @@
     function animate() {
         render();
 
-        requestAnimationFrame(animate);
+        window.requestAnimationFrame(animate);
 
         stats.update();
     }
