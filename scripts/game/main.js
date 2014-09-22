@@ -3,10 +3,10 @@
 (function() {
     'use strict';
 
-    var container;
-    var scene, camera, renderer, stats;
-    var keyboard;
-    var cube;
+    var scene, renderer, camera,
+        stats,
+        keyboard,
+        cube;
 
     function init() {
         scene = new THREE.Scene();
@@ -22,7 +22,7 @@
         camera.position.z = 350;
         THREEx.WindowResize(renderer, camera);
 
-        stats = new Stats();
+        stats = new window.Stats();
         stats.setMode(0);
         document.body.appendChild(stats.domElement);
 
