@@ -23,8 +23,7 @@
 
         scene.add(cube);
 
-        container = document.createElement('div');
-        document.body.appendChild(container);
+        container = document.getElementById('canvas');
 
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
