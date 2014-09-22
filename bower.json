@@ -1,0 +1,10 @@
+{
+  "name": "sandbox-threejs",
+  "private": true,
+  "dependencies": {
+    "stats.js": "*",
+    "threejs": "*",
+    "threex.keyboardstate": "*",
+    "threex.windowresize": "*"
+  }
+}
