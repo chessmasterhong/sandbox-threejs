@@ -11,41 +11,35 @@
     function init() {
         scene = new THREE.Scene();
 
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-        camera.position.y = 150;
-        camera.position.z = 350;
-
-        cube = new THREE.Mesh(
-            new THREE.BoxGeometry(200, 200, 200),
-            new THREE.MeshNormalMaterial()
-        );
-        cube.position.y = 150;
-
-        scene.add(cube);
-
-        container = document.createElement('div');
-        document.body.appendChild(container);
-
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
-
-        stats = new Stats();
-        stats.setMode(0);
-        container.appendChild(stats.domElement);
-
-        THREEx.WindowResize(renderer, camera);
-
-        keyboard = new THREEx.KeyboardState(renderer.domElement);
+        document.body.appendChild(renderer.domElement);
         renderer.domElement.setAttribute('tabIndex', '0');
         renderer.domElement.focus();
 
+        camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.y = 150;
+        camera.position.z = 350;
+        THREEx.WindowResize(renderer, camera);
+
+        stats = new Stats();
+        stats.setMode(0);
+        document.body.appendChild(stats.domElement);
+
+        keyboard = new THREEx.KeyboardState(renderer.domElement);
         keyboard.domElement.addEventListener('keydown', function(){
             if(keyboard.pressed('w')) { cube.rotation.x -= 0.1; }
             if(keyboard.pressed('s')) { cube.rotation.x += 0.1; }
             if(keyboard.pressed('a')) { cube.rotation.y -= 0.1; }
             if(keyboard.pressed('d')) { cube.rotation.y += 0.1; }
         });
+
+        cube = new THREE.Mesh(
+            new THREE.BoxGeometry(200, 200, 200),
+            new THREE.MeshNormalMaterial()
+        );
+        cube.position.y = 150;
+        scene.add(cube);
     }
 
     function animate() {
