@@ -28,7 +28,7 @@
         stats.setMode(0);
         document.body.appendChild(stats.domElement);
 
-        mesh = createIcosahedron();
+        mesh = createIcosahedron(0, 0, 0);
         scene.add(mesh);
         scene.add(new THREE.WireframeHelper(mesh, 0x000000));
     }
@@ -45,7 +45,7 @@
         mesh.rotation.z += Math.PI / 1800;
     }
 
-    function createIcosahedron() {
+    function createIcosahedron(x, y, z) {
         // Regular icosahedron {3,5}
         // F = 20, E = 30, V = 12
 
@@ -91,7 +91,12 @@
         );
         geometry.computeFaceNormals();
 
-        return new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+        var mesh = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+        mesh.translateX(x);
+        mesh.translateY(y);
+        mesh.translateZ(z);
+
+        return mesh;
     }
 
     init();
