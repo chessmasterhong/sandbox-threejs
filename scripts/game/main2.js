@@ -9,12 +9,9 @@
 (function() {
     'use strict';
 
-    var theta = Math.sqrt(2 / (5 + Math.sqrt(5))); // 0.525731112119133606
-    var phi   = Math.sqrt(2 / (5 - Math.sqrt(5))); // 0.850650808352039932
-
     var scene, renderer, camera;
     var stats;
-    var material, geometry, mesh;
+    var mesh;
 
     function init() {
         scene = new THREE.Scene();
@@ -31,11 +28,31 @@
         stats.setMode(0);
         document.body.appendChild(stats.domElement);
 
-        material = new THREE.MeshNormalMaterial();
+        mesh = createIcosahedron();
+        scene.add(mesh);
+        scene.add(new THREE.WireframeHelper(mesh, 0x000000));
+    }
 
+    function animate() {
+        renderer.render(scene, camera);
+
+        window.requestAnimationFrame(animate);
+
+        stats.update();
+
+        mesh.rotation.x += Math.PI / 900;
+        mesh.rotation.y += Math.PI / 360;
+        mesh.rotation.z += Math.PI / 1800;
+    }
+
+    function createIcosahedron() {
         // Regular icosahedron {3,5}
         // F = 20, E = 30, V = 12
-        geometry = new THREE.Geometry();
+
+        var theta = Math.sqrt(2 / (5 + Math.sqrt(5))); // 0.525731112119133606
+        var phi   = Math.sqrt(2 / (5 - Math.sqrt(5))); // 0.850650808352039932
+
+        var geometry = new THREE.Geometry();
         geometry.vertices.push(
             new THREE.Vector3(-theta,      0,    phi),
             new THREE.Vector3( theta,      0,    phi),
@@ -74,26 +91,7 @@
         );
         geometry.computeFaceNormals();
 
-        mesh = new THREE.Mesh(geometry, material);
-
-        scene.add(mesh);
-        scene.add(new THREE.WireframeHelper(mesh, 0x000000));
-    }
-
-    function animate() {
-        render();
-
-        window.requestAnimationFrame(animate);
-
-        stats.update();
-
-        mesh.rotation.x += Math.PI / 900;
-        mesh.rotation.y += Math.PI / 360;
-        mesh.rotation.z += Math.PI / 1800;
-    }
-
-    function render() {
-        renderer.render(scene, camera);
+        return new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
     }
 
     init();
