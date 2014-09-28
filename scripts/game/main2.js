@@ -4,12 +4,13 @@
 /**
  *  Implementation references:
  *  http://www.opengl.org.ru/docs/pg/0208.html
+ *  http://xboxforums.create.msdn.com/forums/t/36650.aspx
  */
 (function() {
     'use strict';
 
-    var X = 0.525731112119133606;
-    var Z = 0.850650808352039932;
+    var theta = Math.sqrt(2 / (5 + Math.sqrt(5))); // 0.525731112119133606
+    var phi   = Math.sqrt(2 / (5 - Math.sqrt(5))); // 0.850650808352039932
 
     var scene, renderer, camera;
     var stats;
@@ -36,18 +37,18 @@
         // F = 20, E = 30, V = 12
         geometry = new THREE.Geometry();
         geometry.vertices.push(
-            new THREE.Vector3(-X,  0,  Z),
-            new THREE.Vector3( X,  0,  Z),
-            new THREE.Vector3(-X,  0, -Z),
-            new THREE.Vector3( X,  0, -Z),
-            new THREE.Vector3( 0,  Z,  X),
-            new THREE.Vector3( 0,  Z, -X),
-            new THREE.Vector3( 0, -Z,  X),
-            new THREE.Vector3( 0, -Z, -X),
-            new THREE.Vector3( Z,  X,  0),
-            new THREE.Vector3(-Z,  X,  0),
-            new THREE.Vector3( Z, -X,  0),
-            new THREE.Vector3(-Z, -X,  0)
+            new THREE.Vector3(-theta,      0,    phi),
+            new THREE.Vector3( theta,      0,    phi),
+            new THREE.Vector3(-theta,      0,   -phi),
+            new THREE.Vector3( theta,      0,   -phi),
+            new THREE.Vector3(     0,    phi,  theta),
+            new THREE.Vector3(     0,    phi, -theta),
+            new THREE.Vector3(     0,   -phi,  theta),
+            new THREE.Vector3(     0,   -phi, -theta),
+            new THREE.Vector3(   phi,  theta,      0),
+            new THREE.Vector3(  -phi,  theta,      0),
+            new THREE.Vector3(   phi, -theta,      0),
+            new THREE.Vector3(  -phi, -theta,      0)
         );
         geometry.faces.push(
             new THREE.Face3( 0,  4,  1),
