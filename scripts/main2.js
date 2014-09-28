@@ -23,18 +23,33 @@
     stats.setMode(0);
     document.body.appendChild(stats.domElement);
 
-    var material = new THREE.MeshNormalMaterial({
+    /* ====================================================================== */
+
+    var light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    var material = new THREE.MeshPhongMaterial({
+        color      : 0x223344,
+        //ambient    : 0xffffff,
+        emissive   : 0x101010,
+        specular   : 0xffffff,
+        shininess  : 10,
+        shading    : THREE.FlatShading,
         transparent: true,
-        opacity: 0.5
+        opacity    : 0.25
     });
+
     var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 0), material);
     var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 0), material);
 
     scene.add(meshOuter);
     scene.add(meshInner);
 
-    scene.add(new THREE.WireframeHelper(meshOuter, 0x000000));
-    scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
+    //scene.add(new THREE.WireframeHelper(meshOuter, 0x000000));
+    //scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
+
+    /* ====================================================================== */
 
     function update() {
         meshOuter.rotation.x = meshInner.rotation.x += Math.PI / 900;
