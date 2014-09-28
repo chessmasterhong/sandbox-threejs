@@ -49,6 +49,11 @@
         // Regular icosahedron {3,5}
         // F = 20, E = 30, V = 12
 
+        if(typeof x === 'undefined' || typeof x !== 'number') { x = 0; }
+        if(typeof y === 'undefined' || typeof y !== 'number') { y = 0; }
+        if(typeof z === 'undefined' || typeof z !== 'number') { z = 0; }
+        if(typeof s === 'undefined' || typeof s !== 'number') { s = 1; }
+
         var theta = Math.sqrt(2 / (5 + Math.sqrt(5))); // 0.525731112119133606
         var phi   = Math.sqrt(2 / (5 - Math.sqrt(5))); // 0.850650808352039932
 
