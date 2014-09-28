@@ -23,16 +23,23 @@
     stats.setMode(0);
     document.body.appendChild(stats.domElement);
 
-    var geometry = new THREE.IcosahedronGeometry(1, 0);
-    var material = new THREE.MeshNormalMaterial({ wireframe: true });
-    var mesh = new THREE.Mesh(geometry, material);
+    var material = new THREE.MeshNormalMaterial({
+        transparent: true,
+        opacity: 0.5
+    });
+    var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 0), material);
+    var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 0), material);
 
-    scene.add(mesh);
+    scene.add(meshOuter);
+    scene.add(meshInner);
+
+    scene.add(new THREE.WireframeHelper(meshOuter, 0x000000));
+    scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
 
     function update() {
-        mesh.rotation.x += Math.PI / 900;
-        mesh.rotation.y += Math.PI / 360;
-        mesh.rotation.z += Math.PI / 1800;
+        meshOuter.rotation.x = meshInner.rotation.x += Math.PI / 900;
+        meshOuter.rotation.y = meshInner.rotation.y += Math.PI / 360;
+        meshOuter.rotation.z = meshInner.rotation.z += Math.PI / 1800;
     }
 
     function render() {
