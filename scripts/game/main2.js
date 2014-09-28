@@ -76,6 +76,7 @@
         mesh = new THREE.Mesh(geometry, material);
 
         scene.add(mesh);
+        scene.add(new THREE.WireframeHelper(mesh, 0x000000));
     }
 
     function animate() {
