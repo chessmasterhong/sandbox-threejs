@@ -11,7 +11,7 @@
 
     var scene = new THREE.Scene();
 
-    var renderer = new THREE.WebGLRenderer();
+    var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
@@ -23,12 +23,11 @@
     stats.setMode(0);
     document.body.appendChild(stats.domElement);
 
-    var geometry = new THREE.IcosahedronGeometry();
-    var material = new THREE.MeshNormalMaterial();
+    var geometry = new THREE.IcosahedronGeometry(1, 0);
+    var material = new THREE.MeshNormalMaterial({ wireframe: true });
     var mesh = new THREE.Mesh(geometry, material);
 
     scene.add(mesh);
-    scene.add(new THREE.WireframeHelper(mesh, 0x000000));
 
     function update() {
         mesh.rotation.x += Math.PI / 900;
