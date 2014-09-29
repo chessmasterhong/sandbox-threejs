@@ -23,6 +23,9 @@
     stats.setMode(0);
     document.body.appendChild(stats.domElement);
 
+    var axis = new THREE.AxisHelper(10);
+    scene.add(axis);
+
     /* ====================================================================== */
 
     /**
