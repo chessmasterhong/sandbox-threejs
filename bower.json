@@ -5,6 +5,7 @@
     "stats.js": "*",
     "threejs": "*",
     "threex.keyboardstate": "*",
-    "threex.windowresize": "*"
+    "threex.windowresize": "*",
+    "OrbitControls": "http://threejs.org/examples/js/controls/OrbitControls.js"
   }
 }

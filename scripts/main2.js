@@ -16,8 +16,10 @@
     document.body.appendChild(renderer.domElement);
 
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
-    camera.position.set(0, 4, 0);
+    camera.position.set(0, 0, 4);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    var controls = new THREE.OrbitControls( camera );
 
     var stats = new window.Stats();
     stats.setMode(0);
@@ -30,27 +32,27 @@
 
     /**
      *  Light sources positioning
-     *           -x
+     *           +y
      *            |
      *      L1 ------- L2
      *        \   |   /
-     *  +z ----\--#--/---- -z
+     *  -x ----\--#--/---- +x
      *          \ | /
      *           \|/
      *           L0
      *            |
-     *           +x
+     *           -y
      */
     var L0 = new THREE.PointLight(0xff0000);
     L0.position.set(10 * Math.sqrt(3), 0, 0);
     scene.add(L0);
 
     var L1 = new THREE.PointLight(0x00ff00);
-    L1.position.set(-2.5 * Math.sqrt(3), 0, 10);
+    L1.position.set(-2.5 * Math.sqrt(3), 10, 0);
     scene.add(L1);
 
     var L2 = new THREE.PointLight(0x0000ff);
-    L2.position.set(-2.5 * Math.sqrt(3), 0, -10);
+    L2.position.set(-2.5 * Math.sqrt(3), -10, 0);
     scene.add(L2);
 
     var material = new THREE.MeshPhongMaterial({
@@ -60,8 +62,8 @@
         specular   : 0xffffff,
         shininess  : 10,
         shading    : THREE.FlatShading,
-        transparent: true,
-        opacity    : 0.65
+        //transparent: true,
+        opacity    : 0.7
     });
 
     /**
@@ -91,18 +93,14 @@
     /* ====================================================================== */
 
     function update() {
-        //meshOuter.rotation.x += Math.PI / 900;
-        meshOuter.rotation.y += Math.PI / 720;
-        //meshOuter.rotation.z += Math.PI / 1800;
-
-        meshInner.rotation.x = meshOuter.rotation.x;
+        //meshOuter.rotation.y += Math.PI / 900;
         meshInner.rotation.y = meshOuter.rotation.y;
-        meshInner.rotation.z = meshOuter.rotation.z;
     }
 
     function render() {
         window.requestAnimationFrame(render);
         renderer.render(scene, camera);
+        controls.update();
         stats.update();
         update();
     }
