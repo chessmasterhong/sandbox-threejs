@@ -29,27 +29,28 @@
     /* ====================================================================== */
 
     /**
-     *  L1 ---------- L2
-     *   \            /
-     *    \    ##    /
-     *     \   ##   /
-     *      \      /
-     *       \    /
-     *        \  /
-     *         L0
+     *  Light sources positioning
+     *           -x
+     *            |
+     *      L1 ------- L2
+     *        \   |   /
+     *  +z ----\--#--/---- -z
+     *          \ | /
+     *           \|/
+     *           L0
+     *            |
+     *           +x
      */
-
-
     var L0 = new THREE.PointLight(0xff0000);
     L0.position.set(10 * Math.sqrt(3), 0, 0);
     scene.add(L0);
 
     var L1 = new THREE.PointLight(0x00ff00);
-    L1.position.set(0, 0, 10);
+    L1.position.set(-2.5 * Math.sqrt(3), 0, 10);
     scene.add(L1);
 
     var L2 = new THREE.PointLight(0x0000ff);
-    L2.position.set(0, 0, -10);
+    L2.position.set(-2.5 * Math.sqrt(3), 0, -10);
     scene.add(L2);
 
     var material = new THREE.MeshPhongMaterial({
