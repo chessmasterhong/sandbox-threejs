@@ -25,8 +25,11 @@
     stats.setMode(0);
     document.body.appendChild(stats.domElement);
 
-    var axis = new THREE.AxisHelper(10);
-    scene.add(axis);
+    var axisPos = new THREE.AxisHelper(10);
+    scene.add(axisPos);
+
+    var axisNeg = new THREE.AxisHelper(-10);
+    scene.add(axisNeg);
 
     /* ====================================================================== */
 
@@ -77,6 +80,39 @@
      *    4  | 500 = 25 * 20 = (4 + 1)^2 * 20
      *   ... | ...
      *    n  |                 (n + 1)^2 * 20
+     *
+     *  Icosahedron net (subdivision s=0)
+     *    row  |  row tri  |  total tri
+     *  -------+-----------+-------------
+     *     1   |     5     |      5
+     *     2   |    10     |     15
+     *     3   |     5     |     20
+     *
+     *  Icosahedron net (subdivision s=1)
+     *    row  |  row tri  |  total tri
+     *  -------+-----------+-------------
+     *     1   |     5     |      5
+     *     2   |    15     |     20
+     *     3   |    20     |     40
+     *     4   |    20     |     60
+     *     5   |    15     |     75
+     *     6   |     5     |     80
+     *
+     *  Icosahedron net (subdivision s=2) (?)
+     *    row  |  row tri  |  total tri
+     *  -------+-----------+-------------
+     *     1   |     5     |      5
+     *     2   |    15     |     20
+     *     3   |    25     |     45
+     *     4   |    35     |     80
+     *     5   |    40     |    120
+     *     6   |    40     |    160
+     *     7   |    40     |    200
+     *     8   |    40     |    240
+     *     9   |    35     |    275
+     *    10   |    25     |    300
+     *    11   |    15     |    315
+     *    12   |     5     |    320
      */
     var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 2), material);
     var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 2), material);
