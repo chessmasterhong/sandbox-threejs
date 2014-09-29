@@ -25,9 +25,29 @@
 
     /* ====================================================================== */
 
-    var light = new THREE.PointLight(0xffffff);
-    light.position.set(10, 10, 10);
-    scene.add(light);
+    /**
+     *  L1 ---------- L2
+     *   \            /
+     *    \    ##    /
+     *     \   ##   /
+     *      \      /
+     *       \    /
+     *        \  /
+     *         L0
+     */
+
+
+    var L0 = new THREE.PointLight(0xff0000);
+    L0.position.set(10 * Math.sqrt(3), 0, 0);
+    scene.add(L0);
+
+    var L1 = new THREE.PointLight(0x00ff00);
+    L1.position.set(0, 0, 10);
+    scene.add(L1);
+
+    var L2 = new THREE.PointLight(0x0000ff);
+    L2.position.set(0, 0, -10);
+    scene.add(L2);
 
     var material = new THREE.MeshPhongMaterial({
         color      : 0x223344,
