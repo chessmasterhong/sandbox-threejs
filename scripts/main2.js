@@ -61,20 +61,32 @@
         shininess  : 10,
         shading    : THREE.FlatShading,
         transparent: true,
-        opacity    : 0.5
+        opacity    : 0.65
     });
 
+    /**
+     *  Icosahedron subdivisions
+     *    s  |  f
+     *  -----+-----
+     *    0  |  20 =  1 * 20 = (0 + 1)^2 * 20
+     *    1  |  80 =  4 * 20 = (1 + 1)^2 * 20
+     *    2  | 180 =  9 * 20 = (2 + 1)^2 * 20
+     *    3  | 320 = 16 * 20 = (3 + 1)^2 * 20
+     *    4  | 500 = 25 * 20 = (4 + 1)^2 * 20
+     *   ... | ...
+     *    n  |                 (n + 1)^2 * 20
+     */
     var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 2), material);
-    //var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 2), material);
+    var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 2), material);
 
     scene.add(meshOuter);
-    //scene.add(meshInner);
+    scene.add(meshInner);
 
-    scene.add(new THREE.WireframeHelper(meshOuter, 0x808080));
-    //scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
+    scene.add(new THREE.WireframeHelper(meshOuter, 0x606060));
+    scene.add(new THREE.WireframeHelper(meshInner, 0x404040));
 
     meshOuter.rotation.z = 0.55;
-    //meshInner.rotation.z = meshOuter.rotation.z;
+    meshInner.rotation.z = meshOuter.rotation.z;
 
     /* ====================================================================== */
 
@@ -83,9 +95,9 @@
         meshOuter.rotation.y += Math.PI / 720;
         //meshOuter.rotation.z += Math.PI / 1800;
 
-        //meshInner.rotation.x = meshOuter.rotation.x;
-        //meshInner.rotation.y = meshOuter.rotation.y;
-        //meshInner.rotation.z = meshOuter.rotation.z;
+        meshInner.rotation.x = meshOuter.rotation.x;
+        meshInner.rotation.y = meshOuter.rotation.y;
+        meshInner.rotation.z = meshOuter.rotation.z;
     }
 
     function render() {
