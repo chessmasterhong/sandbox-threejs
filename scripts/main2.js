@@ -57,26 +57,31 @@
         shininess  : 10,
         shading    : THREE.FlatShading,
         transparent: true,
-        opacity    : 0.25
+        opacity    : 0.5
     });
 
-    var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 1), material);
-    var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 1), material);
+    var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 2), material);
+    //var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 2), material);
 
     scene.add(meshOuter);
-    scene.add(meshInner);
+    //scene.add(meshInner);
 
-    //scene.add(new THREE.WireframeHelper(meshOuter, 0x000000));
+    scene.add(new THREE.WireframeHelper(meshOuter, 0x808080));
     //scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
 
-    meshOuter.rotation.z = meshInner.rotation.z = 0.55;
+    meshOuter.rotation.z = 0.55;
+    //meshInner.rotation.z = meshOuter.rotation.z;
 
     /* ====================================================================== */
 
     function update() {
-        //meshOuter.rotation.x = meshInner.rotation.x += Math.PI / 900;
-        meshOuter.rotation.y = meshInner.rotation.y += Math.PI / 360;
-        //meshOuter.rotation.z = meshInner.rotation.z += Math.PI / 1800;
+        //meshOuter.rotation.x += Math.PI / 900;
+        meshOuter.rotation.y += Math.PI / 720;
+        //meshOuter.rotation.z += Math.PI / 1800;
+
+        //meshInner.rotation.x = meshOuter.rotation.x;
+        //meshInner.rotation.y = meshOuter.rotation.y;
+        //meshInner.rotation.z = meshOuter.rotation.z;
     }
 
     function render() {
