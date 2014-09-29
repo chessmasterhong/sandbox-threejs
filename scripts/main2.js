@@ -16,7 +16,7 @@
     document.body.appendChild(renderer.domElement);
 
     var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
-    camera.position.set(0, 0, 4);
+    camera.position.set(0, 4, 0);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     var stats = new window.Stats();
@@ -25,7 +25,7 @@
 
     /* ====================================================================== */
 
-    var light = new THREE.PointLight(0xffffff, 1, 100);
+    var light = new THREE.PointLight(0xffffff);
     light.position.set(10, 10, 10);
     scene.add(light);
 
@@ -40,8 +40,8 @@
         opacity    : 0.25
     });
 
-    var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 0), material);
-    var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 0), material);
+    var meshOuter = new THREE.Mesh(new THREE.IcosahedronGeometry(1.0, 1), material);
+    var meshInner = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 1), material);
 
     scene.add(meshOuter);
     scene.add(meshInner);
@@ -49,12 +49,14 @@
     //scene.add(new THREE.WireframeHelper(meshOuter, 0x000000));
     //scene.add(new THREE.WireframeHelper(meshInner, 0x000000));
 
+    meshOuter.rotation.z = meshInner.rotation.z = 0.55;
+
     /* ====================================================================== */
 
     function update() {
-        meshOuter.rotation.x = meshInner.rotation.x += Math.PI / 900;
+        //meshOuter.rotation.x = meshInner.rotation.x += Math.PI / 900;
         meshOuter.rotation.y = meshInner.rotation.y += Math.PI / 360;
-        meshOuter.rotation.z = meshInner.rotation.z += Math.PI / 1800;
+        //meshOuter.rotation.z = meshInner.rotation.z += Math.PI / 1800;
     }
 
     function render() {
