@@ -1,10 +1,13 @@
 /* global THREE, THREEx */
 
-
 /**
  *  Implementation references:
- *  http://www.opengl.org.ru/docs/pg/0208.html
- *  http://xboxforums.create.msdn.com/forums/t/36650.aspx
+ *    http://www.opengl.org.ru/docs/pg/0208.html
+ *    http://xboxforums.create.msdn.com/forums/t/36650.aspx
+ *
+ *  Additional resources:
+ *    http://en.wikipedia.org/wiki/Regular_icosahedron
+ *    http://en.wikipedia.org/wiki/Geodesic_grid
  */
 (function() {
     'use strict';
@@ -19,7 +22,7 @@
     camera.position.set(0, 0, 4);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-    var controls = new THREE.OrbitControls( camera );
+    var controls = new THREE.OrbitControls(camera);
 
     var stats = new window.Stats();
     stats.setMode(0);
@@ -58,6 +61,7 @@
     L2.position.set(-2.5 * Math.sqrt(3), -10, 0);
     scene.add(L2);
 
+
     var material = new THREE.MeshPhongMaterial({
         color      : 0x223344,
         //ambient    : 0xffffff,
@@ -65,7 +69,7 @@
         specular   : 0xffffff,
         shininess  : 10,
         shading    : THREE.FlatShading,
-        //transparent: true,
+        transparent: true,
         opacity    : 0.7
     });
 
@@ -130,7 +134,7 @@
 
     function update() {
         //meshOuter.rotation.y += Math.PI / 900;
-        meshInner.rotation.y = meshOuter.rotation.y;
+        //meshInner.rotation.y = meshOuter.rotation.y;
     }
 
     function render() {
